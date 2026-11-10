@@ -1,0 +1,40 @@
+appId: es.buhoai.noche
+productName: Búho Noche
+copyright: © 2026 Buho Corps Systems
+directories:
+  output: dist
+  buildResources: build
+files:
+  - src/**
+  - package.json
+  - build/icon.png
+# Motor nativo (buho-noche-motor.exe, compilado con el csc de Windows).
+extraResources:
+  - from: resources/bin
+    to: bin
+# Agentic first: el CLI y su guía van en <instalación>\cli (el instalador lo añade al PATH del usuario).
+extraFiles:
+  - from: bin/buho-noche.mjs
+    to: cli/buho-noche.mjs
+  - from: build/cli
+    to: cli
+  - from: skills/buho-noche/SKILL.md
+    to: cli/SKILL.md
+  - from: skills/buho-noche/SKILL.md
+    to: SKILL.md
+win:
+  icon: build/icon.png
+  executableName: BuhoNoche
+  legalTrademarks: Buho Corps Systems
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: Buho-Noche-${version}-${arch}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Búho Noche
+  include: build/installer.nsh

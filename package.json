@@ -1,0 +1,21 @@
+{
+  "name": "buhoai-noche",
+  "productName": "Búho Noche",
+  "version": "0.1.0",
+  "description": "Búho Noche: pantallas en rojo, brillo a la mitad o apagadas hasta mover el ratón, con el PC encendido. Agentic first (CLI buho-noche). Buho Corps Systems.",
+  "author": { "name": "Buho Corps Systems" },
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "src/main.js",
+  "bin": { "buho-noche": "bin/buho-noche.mjs" },
+  "scripts": {
+    "build": "node scripts/build-motor.mjs",
+    "start": "node scripts/build-motor.mjs && electron .",
+    "dist": "node scripts/build-motor.mjs && electron-builder --win",
+    "dist:portable": "node scripts/build-motor.mjs && electron-builder --win --dir && node scripts/make-portable.mjs"
+  },
+  "devDependencies": {
+    "electron": "44.9.3",
+    "electron-builder": "^26.15.3"
+  }
+}

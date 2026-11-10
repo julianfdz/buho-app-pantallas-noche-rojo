@@ -1,0 +1,6 @@
+#!/bin/sh
+# buho-noche: CLI de Buho Noche (Git Bash, MSYS, WSL). Usa el ejecutable de la app en modo Node.
+dir=$(cd "$(dirname "$0")" && pwd)
+script="$dir/buho-noche.mjs"
+if command -v wslpath >/dev/null 2>&1; then script=$(wslpath -w "$script"); fi
+ELECTRON_RUN_AS_NODE=1 exec "$dir/../BuhoNoche.exe" "$script" "$@"

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<title>Búho Noche</title>
+<style>
+  :root {
+    --fondo: #07080c; --panel: #10121a; --borde: #1d2130; --texto: #e9e6e2; --tenue: #8a8d99;
+    --rojo: #ff3b30; --rojo-osc: #3a0d0b; --ambar: #ff9f0a; --turquesa: #00c1b8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--fondo); color: var(--texto); font: 14px/1.4 "Segoe UI", Calibri, sans-serif; user-select: none; }
+  body { padding: 18px 18px 14px; }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  header img { width: 30px; height: 30px; }
+  header h1 { font: 600 18px Georgia, serif; margin: 0; }
+  header .est { margin-left: auto; font-size: 12px; color: var(--tenue); }
+  .modos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+  .modo { background: var(--panel); border: 1px solid var(--borde); color: var(--texto); border-radius: 10px; padding: 12px 6px; font: 600 14px inherit; cursor: pointer; }
+  .modo .pt { display: block; width: 18px; height: 18px; border-radius: 50%; margin: 0 auto 6px; }
+  .modo[data-m=rojo] .pt { background: var(--rojo); }
+  .modo[data-m=ambar] .pt { background: var(--ambar); }
+  .modo[data-m=normal] .pt { background: #f2f2f2; }
+  .modo.on { border-color: var(--rojo); background: var(--rojo-osc); }
+  .modo[data-m=normal].on { border-color: var(--turquesa); background: #062a29; }
+  .modo[data-m=ambar].on { border-color: var(--ambar); background: #2e1c03; }
+  section { background: var(--panel); border: 1px solid var(--borde); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+  .fila { display: flex; justify-content: space-between; align-items: baseline; }
+  .fila b { font-weight: 600; }
+  .fila span { color: var(--tenue); font-variant-numeric: tabular-nums; }
+  .nota { color: var(--tenue); font-size: 12px; margin-top: 4px; }
+  input[type=range] { width: 100%; margin: 10px 0 2px; accent-color: var(--rojo); }
+  .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0 10px; }
+  .btn { background: #161925; border: 1px solid var(--borde); color: var(--texto); border-radius: 10px; padding: 11px 8px; font: 600 13px inherit; cursor: pointer; }
+  .btn:hover, .modo:hover { border-color: #3a3f55; }
+  .btn.apagar { background: #000; border-color: #333; }
+  .atajos { color: var(--tenue); font-size: 11.5px; line-height: 1.7; }
+  kbd { font: 11px Consolas, monospace; background: #161925; border: 1px solid var(--borde); border-radius: 4px; padding: 0 4px; color: var(--texto); }
+</style>
+</head>
+<body>
+  <header>
+    <img src="../../build/icon.png" alt="">
+    <h1>Búho Noche</h1>
+    <div class="est" id="est"></div>
+  </header>
+
+  <div class="modos">
+    <button class="modo" data-m="rojo"><i class="pt"></i>Rojo</button>
+    <button class="modo" data-m="ambar"><i class="pt"></i>Ámbar</button>
+    <button class="modo" data-m="normal"><i class="pt"></i>Normal</button>
+  </div>
+
+  <section>
+    <div class="fila"><b>Brillo de la imagen</b><span id="vBrillo"></span></div>
+    <input type="range" id="brillo" min="5" max="100" step="1">
+    <div class="nota">Oscurece la imagen en todas las pantallas.</div>
+  </section>
+
+  <div id="luces"></div>
+
+  <div class="acciones">
+    <button class="btn" id="mitad">Brillo a la mitad</button>
+    <button class="btn apagar" id="apagar">Apagar hasta mover el ratón</button>
+  </div>
+
+  <div class="atajos">
+    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> rojo / normal ·
+    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd> mitad ·
+    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd> apagar<br>
+    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd> brillo ·
+    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd> todo normal
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
